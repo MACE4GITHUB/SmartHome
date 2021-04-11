@@ -1,0 +1,104 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHome.Data.Api", "Services\Data\SmartHome.Data.Api\SmartHome.Data.Api.csproj", "{48CE807E-B96E-4810-9025-B5746D5B3F15}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{69B1FCD1-D99B-4A09-AB92-FF2D5BA27082}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{616BC181-A092-46E5-BEFA-BF8C5A5D26DA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHome.Common", "Common\SmartHome.Common\SmartHome.Common.csproj", "{8B9CA616-D116-4650-B294-DDA50BF536E0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHome.CommonTests", "Common\SmartHome.CommonTests\SmartHome.CommonTests.csproj", "{77D8276D-512F-456B-B4C5-14E9AAA5D211}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{3385DA92-251D-4B38-B8A5-56935F53F04A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHome.Data.Infrastructure.Abstractions", "Services\Data\SmartHome.Data.Infrastructure.Abstractions\SmartHome.Data.Infrastructure.Abstractions.csproj", "{A79433CB-501F-46A7-997B-27C91E314C62}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHome.Data.Infrastructure.MongoDB", "Services\Data\SmartHome.Data.Infrastructure.MongoDB\SmartHome.Data.Infrastructure.MongoDB.csproj", "{C2B49344-1078-4F34-8951-4C77F061A69A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHome.Data.ApiTests", "Services\Data\Tests\SmartHome.Data.ApiTests\SmartHome.Data.ApiTests.csproj", "{BC7DB642-6A83-46E6-87F8-2FD94928005D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHome.Data.Infrastructure.MongoDBTests", "Services\Data\Tests\SmartHome.Data.Infrastructure.MongoDBTests\SmartHome.Data.Infrastructure.MongoDBTests.csproj", "{B587135B-DAB1-4A8D-B5C1-16AF38505452}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{020A1E34-1EFA-4FEF-99E5-7AD6F3A3EAB7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{0CBCDDFB-39BC-44EE-8AB2-9FCF64343B80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHome.Configuration.Abstractions", "Services\Configuration\SmartHome.Configuration.Abstractions\SmartHome.Configuration.Abstractions.csproj", "{3A047039-FF3D-464F-9B2C-71B7368D230F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHome.Configuration.Api", "Services\Configuration\SmartHome.Configuration.Api\SmartHome.Configuration.Api.csproj", "{76E280E9-0869-43F2-9DCB-6F5AC34717C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHome.Configuration.Infrastructure", "Services\Configuration\SmartHome.Configuration.Infrastructure\SmartHome.Configuration.Infrastructure.csproj", "{55FF08CC-7B62-4DBD-8EAD-5A0EE75762D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48CE807E-B96E-4810-9025-B5746D5B3F15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48CE807E-B96E-4810-9025-B5746D5B3F15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48CE807E-B96E-4810-9025-B5746D5B3F15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48CE807E-B96E-4810-9025-B5746D5B3F15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B9CA616-D116-4650-B294-DDA50BF536E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B9CA616-D116-4650-B294-DDA50BF536E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B9CA616-D116-4650-B294-DDA50BF536E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B9CA616-D116-4650-B294-DDA50BF536E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77D8276D-512F-456B-B4C5-14E9AAA5D211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77D8276D-512F-456B-B4C5-14E9AAA5D211}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77D8276D-512F-456B-B4C5-14E9AAA5D211}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77D8276D-512F-456B-B4C5-14E9AAA5D211}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A79433CB-501F-46A7-997B-27C91E314C62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A79433CB-501F-46A7-997B-27C91E314C62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A79433CB-501F-46A7-997B-27C91E314C62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A79433CB-501F-46A7-997B-27C91E314C62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2B49344-1078-4F34-8951-4C77F061A69A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2B49344-1078-4F34-8951-4C77F061A69A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2B49344-1078-4F34-8951-4C77F061A69A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2B49344-1078-4F34-8951-4C77F061A69A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC7DB642-6A83-46E6-87F8-2FD94928005D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC7DB642-6A83-46E6-87F8-2FD94928005D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC7DB642-6A83-46E6-87F8-2FD94928005D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC7DB642-6A83-46E6-87F8-2FD94928005D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B587135B-DAB1-4A8D-B5C1-16AF38505452}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B587135B-DAB1-4A8D-B5C1-16AF38505452}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B587135B-DAB1-4A8D-B5C1-16AF38505452}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B587135B-DAB1-4A8D-B5C1-16AF38505452}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A047039-FF3D-464F-9B2C-71B7368D230F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A047039-FF3D-464F-9B2C-71B7368D230F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A047039-FF3D-464F-9B2C-71B7368D230F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A047039-FF3D-464F-9B2C-71B7368D230F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76E280E9-0869-43F2-9DCB-6F5AC34717C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76E280E9-0869-43F2-9DCB-6F5AC34717C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76E280E9-0869-43F2-9DCB-6F5AC34717C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76E280E9-0869-43F2-9DCB-6F5AC34717C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55FF08CC-7B62-4DBD-8EAD-5A0EE75762D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55FF08CC-7B62-4DBD-8EAD-5A0EE75762D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55FF08CC-7B62-4DBD-8EAD-5A0EE75762D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55FF08CC-7B62-4DBD-8EAD-5A0EE75762D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{48CE807E-B96E-4810-9025-B5746D5B3F15} = {3385DA92-251D-4B38-B8A5-56935F53F04A}
+		{8B9CA616-D116-4650-B294-DDA50BF536E0} = {616BC181-A092-46E5-BEFA-BF8C5A5D26DA}
+		{77D8276D-512F-456B-B4C5-14E9AAA5D211} = {616BC181-A092-46E5-BEFA-BF8C5A5D26DA}
+		{3385DA92-251D-4B38-B8A5-56935F53F04A} = {69B1FCD1-D99B-4A09-AB92-FF2D5BA27082}
+		{A79433CB-501F-46A7-997B-27C91E314C62} = {3385DA92-251D-4B38-B8A5-56935F53F04A}
+		{C2B49344-1078-4F34-8951-4C77F061A69A} = {3385DA92-251D-4B38-B8A5-56935F53F04A}
+		{BC7DB642-6A83-46E6-87F8-2FD94928005D} = {020A1E34-1EFA-4FEF-99E5-7AD6F3A3EAB7}
+		{B587135B-DAB1-4A8D-B5C1-16AF38505452} = {020A1E34-1EFA-4FEF-99E5-7AD6F3A3EAB7}
+		{020A1E34-1EFA-4FEF-99E5-7AD6F3A3EAB7} = {3385DA92-251D-4B38-B8A5-56935F53F04A}
+		{0CBCDDFB-39BC-44EE-8AB2-9FCF64343B80} = {69B1FCD1-D99B-4A09-AB92-FF2D5BA27082}
+		{3A047039-FF3D-464F-9B2C-71B7368D230F} = {0CBCDDFB-39BC-44EE-8AB2-9FCF64343B80}
+		{76E280E9-0869-43F2-9DCB-6F5AC34717C2} = {0CBCDDFB-39BC-44EE-8AB2-9FCF64343B80}
+		{55FF08CC-7B62-4DBD-8EAD-5A0EE75762D7} = {0CBCDDFB-39BC-44EE-8AB2-9FCF64343B80}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {21FE279D-8C00-4174-8EA9-46F92609D140}
+	EndGlobalSection
+EndGlobal

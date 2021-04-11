@@ -1,0 +1,28 @@
+﻿version: '3.8'
+
+services:
+
+ database:
+  image: mongo:4.4.4
+  ports:
+   - 27017:27017
+  restart: always
+  volumes:
+   - ./volumes/database/data:/data/db/
+
+ data-api:
+  image: data-api
+  build:
+   context: ./src
+   dockerfile: Services/Data/SmartHome.Data.Api/Dockerfile
+  ports:
+   - 80:80
+  volumes:
+   - ./volumes/logs/api:/app/Logs/  
+  environment:
+   - ASPNETCORE_URLS=http://+
+   - ASPNETCORE_ENVIRONMENT=Development
+  links:
+   - database
+  depends_on:
+   - database
