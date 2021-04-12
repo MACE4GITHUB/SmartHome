@@ -17,10 +17,13 @@ services:
   ports:
    - 80:80
   volumes:
-   - ./volumes/logs/api:/app/Logs/  
+   - ./volumes/logs/api:/app/Logs/
+   - type: bind
+     source: ./volumes/configuration/api/appsettings.Docker.json
+     target: /app/appsettings.Docker.json
   environment:
    - ASPNETCORE_URLS=http://+
-   - ASPNETCORE_ENVIRONMENT=Development
+   - ASPNETCORE_ENVIRONMENT=Docker
   links:
    - database
   depends_on:
