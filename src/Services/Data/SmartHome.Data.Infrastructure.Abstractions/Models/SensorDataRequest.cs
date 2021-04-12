@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SmartHome.Data.Api.Models
+namespace SmartHome.Data.Infrastructure.Abstractions.Models
 {
     /// <summary>
     /// Represents a data request.
@@ -21,5 +21,10 @@ namespace SmartHome.Data.Api.Models
         /// Gets or sets a Value.
         /// </summary>
         public decimal Value { get; set; }
+
+        /// <summary>
+        /// Gets or sets a normalized Value.
+        /// </summary>
+        public decimal NormalValue { get; set; }
     }
 }
