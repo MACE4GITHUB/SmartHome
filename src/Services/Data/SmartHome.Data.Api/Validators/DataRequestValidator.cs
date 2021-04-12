@@ -2,12 +2,12 @@
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using SmartHome.Data.Infrastructure.Abstractions.Models;
 using System;
 
 namespace SmartHome.Data.Api.Validators
 {
     using Extentions;
-    using Models;
     using SmartHome.Configuration.Abstractions;
     using SmartHome.Configuration.Abstractions.Models;
 
@@ -34,7 +34,7 @@ namespace SmartHome.Data.Api.Validators
 
             CascadeMode = CascadeMode.Stop;
 
-            RuleSet("UpdateSensorData", () =>
+            RuleSet("SaveSensorData", () =>
             {
                 RuleFor(x => x.Timestamp)
                     .NotEmpty()

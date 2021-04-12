@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
-using SmartHome.Data.Api.Models;
 using System;
+using SmartHome.Data.Infrastructure.Abstractions.Models;
 using Xunit;
 
 namespace SmartHome.Data.Api.Extentions.Tests

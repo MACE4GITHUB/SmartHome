@@ -1,9 +1,8 @@
 ﻿using System;
+using SmartHome.Data.Infrastructure.Abstractions.Models;
 
 namespace SmartHome.Data.Api.Extentions
 {
-    using Models;
-
     /// <summary>
     /// Represents extentions for SensorDataRequest.
     /// </summary>

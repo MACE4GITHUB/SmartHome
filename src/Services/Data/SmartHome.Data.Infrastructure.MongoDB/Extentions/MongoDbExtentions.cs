@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
+using SmartHome.Data.Infrastructure.Abstractions;
+using SmartHome.Data.Infrastructure.MongoDB.Repositories;
 
 namespace SmartHome.Data.Infrastructure.MongoDB.Extentions
 {
@@ -25,8 +27,8 @@ namespace SmartHome.Data.Infrastructure.MongoDB.Extentions
 
             services.Configure<MongoDbConfiguration>(configuration.GetSection("Database"));
             services.TryAddSingleton<IValidateOptions<MongoDbConfiguration>, MongoDbConfigurationValidation>();
-            
-            // Repositories (Singleton):
+
+            services.AddSingleton<IDataRepository, DataRepository>();
 
             return services;
         }
