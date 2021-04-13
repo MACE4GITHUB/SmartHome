@@ -64,18 +64,18 @@ namespace SmartHome.Data.Api.Validators
 
             if (sensorDataRequest.IsNullOrEmpty())
             {
-                return Error($"Please ensure a {nameof(SensorDataRequest)} was supplied.", null, ref context, ref result);
+                return Error($"Please ensure a {nameof(SensorDataRequest)} was supplied.", null, ref result);
             }
 
             #region Check The Sensor Configuration
             if (!_sensorConfiguration.TryGetSensorConfiguration(context.InstanceToValidate.SensorTypeId, out var sensor))
             {
-                return Error("No one configuration found.", StructuredData, ref context, ref result, sensorDataRequest);
+                return Error("No one configuration found.", StructuredData, ref result, sensorDataRequest);
             }
 
             if (!sensor.IsEnabled)
             {
-                return Error("The sensor is not enabled.", StructuredDataAndConfig, ref context, ref result, sensorDataRequest, sensor);
+                return Error("The sensor is not enabled.", StructuredDataAndConfig, ref result, sensorDataRequest, sensor);
             }
             #endregion
 
@@ -88,7 +88,7 @@ namespace SmartHome.Data.Api.Validators
             }
             catch (ArithmeticException e)
             {
-                return Error(e.Message, StructuredDataAndConfig, ref context, ref result, sensorDataRequest, sensor);
+                return Error(e.Message, StructuredDataAndConfig, ref result, sensorDataRequest, sensor);
             }
 
             return true;
@@ -100,7 +100,7 @@ namespace SmartHome.Data.Api.Validators
             return message;
         }
 
-        private bool Error(string message, string additionalStructuredInfo, ref ValidationContext<SensorDataRequest> context, ref ValidationResult result, params object[] args)
+        private bool Error(string message, string additionalStructuredInfo, ref ValidationResult result, params object[] args)
         {
             result.Errors.Add(new ValidationFailure("", message));
             Log(ref message, ref additionalStructuredInfo, args);
