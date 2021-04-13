@@ -26,7 +26,7 @@ namespace SmartHome.Data.Infrastructure.Abstractions.Models
         /// <summary>
         /// Gets or sets a normalized Value.
         /// </summary>
-        [JsonIgnore] 
+        [JsonIgnore]
         public decimal NormalValue { get; set; }
     }
 }

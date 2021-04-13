@@ -21,7 +21,7 @@ namespace SmartHome.Common.Extentions
             hostBuilder.ConfigureLogging((hostingContext, logging) =>
             {
                 var loggingConfiguration = hostingContext.Configuration.ParseSection("Logging");
-                
+
                 if (!hostingContext.HasLog("LogToSerilog"))
                 {
                     return;

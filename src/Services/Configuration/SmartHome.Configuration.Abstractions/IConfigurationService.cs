@@ -8,7 +8,7 @@ namespace SmartHome.Configuration.Abstractions
     /// <summary>
     /// Determines the interface of configuration.
     /// </summary>
-    public interface IConfigurationService 
+    public interface IConfigurationService
     {
         /// <summary>
         /// Gets all sensor configurations.

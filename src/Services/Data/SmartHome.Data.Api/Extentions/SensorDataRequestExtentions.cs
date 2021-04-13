@@ -1,5 +1,5 @@
-﻿using System;
-using SmartHome.Data.Infrastructure.Abstractions.Models;
+﻿using SmartHome.Data.Infrastructure.Abstractions.Models;
+using System;
 
 namespace SmartHome.Data.Api.Extentions
 {

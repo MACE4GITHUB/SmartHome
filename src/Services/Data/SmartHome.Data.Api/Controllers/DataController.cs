@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SmartHome.Data.Infrastructure.Abstractions;
 using SmartHome.Data.Infrastructure.Abstractions.Models;
 using System.Threading.Tasks;
-using SmartHome.Data.Infrastructure.Abstractions;
 
 namespace SmartHome.Data.Api.Controllers
 {
