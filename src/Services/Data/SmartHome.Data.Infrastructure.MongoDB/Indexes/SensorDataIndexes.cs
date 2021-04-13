@@ -14,6 +14,7 @@ namespace SmartHome.Data.Infrastructure.MongoDB.Indexes
         /// </summary>
         public static List<CreateIndexModel<SensorDataDb>> GetIndexes => new()
         {
+            new CreateIndexModel<SensorDataDb>(Builders<SensorDataDb>.IndexKeys.Descending(f => f.Id)),
             new CreateIndexModel<SensorDataDb>(Builders<SensorDataDb>.IndexKeys.Ascending(f => f.SensorTypeId)),
             new CreateIndexModel<SensorDataDb>(Builders<SensorDataDb>.IndexKeys.Ascending(f => f.Timestamp))
         };
