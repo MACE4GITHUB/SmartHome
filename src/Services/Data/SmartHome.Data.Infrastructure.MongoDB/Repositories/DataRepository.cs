@@ -29,7 +29,10 @@ namespace SmartHome.Data.Infrastructure.MongoDB.Repositories
             {
                 await _sensorsCollection.InsertOneAsync(sensorDataRequest.ToSensorDataDb());
             }
-            catch { /* Do nothing */ }
+            catch (MongoWriteException)
+            {
+                /* Do nothing */
+            }
         }
     }
 }
