@@ -81,6 +81,16 @@ namespace SmartHome.Data.Api.Validators
 
             _sensor = sensor;
 
+            var converter = new SensorDataConverter(_sensor);
+            try
+            {
+                sensorDataRequest.NormalValue = converter.NormalValueFrom(sensorDataRequest.Value);
+            }
+            catch (ArithmeticException e)
+            {
+                return Error(e.Message, StructuredDataAndConfig, ref context, ref result, sensorDataRequest, sensor);
+            }
+
             return true;
         }
 

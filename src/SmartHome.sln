@@ -27,11 +27,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{020A1E34
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{0CBCDDFB-39BC-44EE-8AB2-9FCF64343B80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHome.Configuration.Abstractions", "Services\Configuration\SmartHome.Configuration.Abstractions\SmartHome.Configuration.Abstractions.csproj", "{3A047039-FF3D-464F-9B2C-71B7368D230F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHome.Configuration.Abstractions", "Services\Configuration\SmartHome.Configuration.Abstractions\SmartHome.Configuration.Abstractions.csproj", "{3A047039-FF3D-464F-9B2C-71B7368D230F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHome.Configuration.Api", "Services\Configuration\SmartHome.Configuration.Api\SmartHome.Configuration.Api.csproj", "{76E280E9-0869-43F2-9DCB-6F5AC34717C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHome.Configuration.Api", "Services\Configuration\SmartHome.Configuration.Api\SmartHome.Configuration.Api.csproj", "{76E280E9-0869-43F2-9DCB-6F5AC34717C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHome.Configuration.Infrastructure", "Services\Configuration\SmartHome.Configuration.Infrastructure\SmartHome.Configuration.Infrastructure.csproj", "{55FF08CC-7B62-4DBD-8EAD-5A0EE75762D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHome.Configuration.Infrastructure", "Services\Configuration\SmartHome.Configuration.Infrastructure\SmartHome.Configuration.Infrastructure.csproj", "{55FF08CC-7B62-4DBD-8EAD-5A0EE75762D7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHome.Data.Infrastructure.AbstractionsTests", "Services\Data\Tests\SmartHome.Data.Infrastructure.AbstractionsTests\SmartHome.Data.Infrastructure.AbstractionsTests.csproj", "{5F6D70FA-6D86-4662-B42C-D5CD5ED6FD0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +81,10 @@ Global
 		{55FF08CC-7B62-4DBD-8EAD-5A0EE75762D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55FF08CC-7B62-4DBD-8EAD-5A0EE75762D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55FF08CC-7B62-4DBD-8EAD-5A0EE75762D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F6D70FA-6D86-4662-B42C-D5CD5ED6FD0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F6D70FA-6D86-4662-B42C-D5CD5ED6FD0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F6D70FA-6D86-4662-B42C-D5CD5ED6FD0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F6D70FA-6D86-4662-B42C-D5CD5ED6FD0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +103,7 @@ Global
 		{3A047039-FF3D-464F-9B2C-71B7368D230F} = {0CBCDDFB-39BC-44EE-8AB2-9FCF64343B80}
 		{76E280E9-0869-43F2-9DCB-6F5AC34717C2} = {0CBCDDFB-39BC-44EE-8AB2-9FCF64343B80}
 		{55FF08CC-7B62-4DBD-8EAD-5A0EE75762D7} = {0CBCDDFB-39BC-44EE-8AB2-9FCF64343B80}
+		{5F6D70FA-6D86-4662-B42C-D5CD5ED6FD0F} = {020A1E34-1EFA-4FEF-99E5-7AD6F3A3EAB7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {21FE279D-8C00-4174-8EA9-46F92609D140}
