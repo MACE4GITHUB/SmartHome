@@ -15,19 +15,9 @@ namespace SmartHome.Data.Infrastructure.Abstractions.Models
         public decimal NormalValueFrom(decimal value) =>
             _sensor.MaxValue == _sensor.MinValue
                 ? throw new ArithmeticException("Abnormal sensor configuration.")
-                : _sensor.MaxValue > _sensor.MinValue
-                    ? GetProgressNormalValueFrom(value)
-                    : GetRegressNormalValueFrom(value);
-
-        private decimal GetProgressNormalValueFrom(decimal currentValue) =>
-            Round(_sensor.MinNormalValue
-                  - ((_sensor.MinNormalValue - _sensor.MaxNormalValue) / (_sensor.MinValue - _sensor.MaxValue))
-                  * (_sensor.MinValue - currentValue));
-
-        private decimal GetRegressNormalValueFrom(decimal currentValue) =>
-            Round(_sensor.MinNormalValue
-                  + ((_sensor.MaxNormalValue - _sensor.MinNormalValue) / (_sensor.MinValue - _sensor.MaxValue))
-                  * (_sensor.MinValue - currentValue));
+                : Round(_sensor.MinNormalValue
+                        + (_sensor.MaxNormalValue - _sensor.MinNormalValue) / (_sensor.MaxValue - _sensor.MinValue)
+                        * (value - _sensor.MinValue));
 
         private decimal Round(decimal value) =>
             Math.Round(value, _sensor.Precision, MidpointRounding.ToEven);
