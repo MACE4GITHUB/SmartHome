@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 
 namespace SmartHome.Data.Infrastructure.Abstractions.Models
 {
@@ -25,6 +26,7 @@ namespace SmartHome.Data.Infrastructure.Abstractions.Models
         /// <summary>
         /// Gets or sets a normalized Value.
         /// </summary>
+        [JsonIgnore] 
         public decimal NormalValue { get; set; }
     }
 }
