@@ -4,9 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SmartHome.Data.Infrastructure.Abstractions;
 using SmartHome.Data.Infrastructure.Abstractions.Models;
-using SmartHome.EventBus.Abstractions;
-using SmartHome.IntegrationBus.Content;
-using SmartHome.IntegrationBus.IntegrationEvents;
+using SmartHome.IntegrationBus;
 using System.Threading.Tasks;
 
 namespace SmartHome.Data.Api.Controllers
@@ -21,22 +19,23 @@ namespace SmartHome.Data.Api.Controllers
     {
         private readonly IDataRepository _dataRepository;
         private readonly ILogger<DataController> _logger;
-        private readonly IIntegrationEventHandler<DataSensorsAddedIntegrationEvent<DataSensorsAddedContent>> _dataHandler;
+        private readonly IDataSensorsHandlerWrapper _handler;
 
         /// <summary>
         /// Creates the Data Controller.
         /// </summary>
         /// <param name="dataRepository"></param>
         /// <param name="logger"></param>
-        /// <param name="dataHandler"></param>
+        /// <param name="handler"></param>
         public DataController(
             IDataRepository dataRepository,
             ILogger<DataController> logger,
-            IIntegrationEventHandler<DataSensorsAddedIntegrationEvent<DataSensorsAddedContent>> dataHandler)
+            IDataSensorsHandlerWrapper handler
+            )
         {
             _dataRepository = dataRepository;
             _logger = logger;
-            _dataHandler = dataHandler;
+            _handler = handler;
         }
 
         /// <summary>
@@ -57,10 +56,7 @@ namespace SmartHome.Data.Api.Controllers
 
             if (isSuccess)
             {
-                var dataEvent = new DataSensorsAddedIntegrationEvent<DataSensorsAddedContent>
-                                (new DataSensorsAddedContent("Data added."), "SmartHome.Data.Api", null);
-
-                await _dataHandler.Handle(dataEvent);
+                await _handler.Handle();
             }
 
             return Ok(sensorDataRequest);

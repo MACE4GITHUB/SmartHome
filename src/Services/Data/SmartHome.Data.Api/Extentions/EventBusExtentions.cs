@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SmartHome.EventBus.Abstractions;
 using SmartHome.EventBus.Events;
+using SmartHome.IntegrationBus;
 using SmartHome.IntegrationBus.Content;
 using SmartHome.IntegrationBus.EventHandling;
 using SmartHome.IntegrationBus.IntegrationEvents;
@@ -14,6 +15,7 @@ namespace SmartHome.Data.Api.Extentions
         public static IServiceCollection AddEventBusHandlers(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IIntegrationEventHandler<DataSensorsAddedIntegrationEvent<DataSensorsAddedContent>>, SourceDataSensorsAddedIntegrationEventHandler<DataSensorsAddedContent>>();
+            services.AddTransient<IDataSensorsHandlerWrapper, DataSensorsHandlerWrapper>();
 
             return services;
         }
