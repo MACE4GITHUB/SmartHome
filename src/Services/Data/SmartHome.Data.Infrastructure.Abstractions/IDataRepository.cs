@@ -13,6 +13,6 @@ namespace SmartHome.Data.Infrastructure.Abstractions
         /// </summary>
         /// <param name="sensorDataRequest"></param>
         /// <returns></returns>
-        Task SaveSensorDataAsync(SensorDataRequest sensorDataRequest);
+        Task<bool> SaveSensorDataAsync(SensorDataRequest sensorDataRequest);
     }
 }

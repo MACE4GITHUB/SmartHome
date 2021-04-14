@@ -14,6 +14,7 @@ namespace SmartHome.Data.Api
 {
     using Extentions;
     using Helpers;
+    using SmartHome.IntegrationBus.Extentions;
 
     /// <summary>
     /// Determines the startup configuration.
@@ -54,6 +55,10 @@ namespace SmartHome.Data.Api
                 .AddSmartHomeDataValidation();
 
             services.AddHttpContextAccessor();
+
+            services
+                .AddMemoryEventBus(Configuration)
+                .AddEventBusHandlers(Configuration);
 
             services.AddApiVersioning(options =>
             {
@@ -107,6 +112,8 @@ namespace SmartHome.Data.Api
                 endpoints.MapControllers();
             });
             LogInfo(logger, "endpoints");
+
+            app.UseEventBus();
         }
 
         private static void LogInfo(ILogger logger, string message)

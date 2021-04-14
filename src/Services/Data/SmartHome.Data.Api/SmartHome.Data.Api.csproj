@@ -18,6 +18,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Common\SmartHome.Common\SmartHome.Common.csproj" />
+		<ProjectReference Include="..\..\Bus\SmartHome.IntegrationBus\SmartHome.IntegrationBus.csproj" />
 		<ProjectReference Include="..\..\Configuration\SmartHome.Configuration.Abstractions\SmartHome.Configuration.Abstractions.csproj" />
 		<ProjectReference Include="..\SmartHome.Data.Infrastructure.MongoDB\SmartHome.Data.Infrastructure.MongoDB.csproj" />
 	</ItemGroup>

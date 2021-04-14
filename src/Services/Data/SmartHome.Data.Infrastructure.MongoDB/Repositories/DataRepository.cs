@@ -27,17 +27,20 @@ namespace SmartHome.Data.Infrastructure.MongoDB.Repositories
             _sensorsCollection = db.GetCollection<SensorDataDb>("Sensors");
         }
 
-        public async Task SaveSensorDataAsync(SensorDataRequest sensorDataRequest)
+        public async Task<bool> SaveSensorDataAsync(SensorDataRequest sensorDataRequest)
         {
             try
             {
                 await _sensorsCollection.InsertOneAsync(sensorDataRequest.ToSensorDataDb());
                 _logger.LogDebug("Data writing was successful. Data: {@sensorDataRequest}", sensorDataRequest);
+                return true;
             }
             catch (MongoWriteException)
             {
                 _logger.LogWarning("Such data exist. Сan not write a duplicate. Data: {@sensorDataRequest}", sensorDataRequest);
             }
+
+            return false;
         }
     }
 }

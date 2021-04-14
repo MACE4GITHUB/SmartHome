@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SmartHome.Data.Infrastructure.Abstractions;
 using SmartHome.Data.Infrastructure.Abstractions.Models;
+using SmartHome.EventBus.Abstractions;
+using SmartHome.IntegrationBus.Content;
+using SmartHome.IntegrationBus.IntegrationEvents;
 using System.Threading.Tasks;
 
 namespace SmartHome.Data.Api.Controllers
@@ -18,16 +21,22 @@ namespace SmartHome.Data.Api.Controllers
     {
         private readonly IDataRepository _dataRepository;
         private readonly ILogger<DataController> _logger;
+        private readonly IIntegrationEventHandler<DataSensorsAddedIntegrationEvent<DataSensorsAddedContent>> _dataHandler;
 
         /// <summary>
         /// Creates the Data Controller.
         /// </summary>
         /// <param name="dataRepository"></param>
         /// <param name="logger"></param>
-        public DataController(IDataRepository dataRepository, ILogger<DataController> logger)
+        /// <param name="dataHandler"></param>
+        public DataController(
+            IDataRepository dataRepository,
+            ILogger<DataController> logger,
+            IIntegrationEventHandler<DataSensorsAddedIntegrationEvent<DataSensorsAddedContent>> dataHandler)
         {
             _dataRepository = dataRepository;
             _logger = logger;
+            _dataHandler = dataHandler;
         }
 
         /// <summary>
@@ -44,7 +53,16 @@ namespace SmartHome.Data.Api.Controllers
         [ProducesResponseType(typeof(SensorDataRequest), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> SaveData([FromBody, CustomizeValidator(RuleSet = "SaveSensorData")] SensorDataRequest sensorDataRequest)
         {
-            await _dataRepository.SaveSensorDataAsync(sensorDataRequest);
+            var isSuccess = await _dataRepository.SaveSensorDataAsync(sensorDataRequest);
+
+            if (isSuccess)
+            {
+                var dataEvent = new DataSensorsAddedIntegrationEvent<DataSensorsAddedContent>
+                                (new DataSensorsAddedContent("Data added."), "SmartHome.Data.Api", null);
+
+                await _dataHandler.Handle(dataEvent);
+            }
+
             return Ok(sensorDataRequest);
         }
     }
