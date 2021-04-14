@@ -60,7 +60,7 @@ namespace SmartHome.MemoryEventBus
         {
             var eventName = iEvent.GetNormalizeTypeName();
 
-            _logger.LogTrace("Processing event: {EventName}", eventName);
+            _logger.LogDebug("Processing event: {EventName}", eventName);
 
             if (_subsManager.HasSubscriptionsForEvent(eventName))
             {
