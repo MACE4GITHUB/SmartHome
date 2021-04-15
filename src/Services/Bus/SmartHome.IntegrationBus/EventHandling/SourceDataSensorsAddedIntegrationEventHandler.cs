@@ -20,7 +20,7 @@ namespace SmartHome.IntegrationBus.EventHandling
 
         public async Task Handle(IntegrationEvent @event)
         {
-            _logger.LogInformation("Handling integration event from source: {IntegrationEventId} at {AppName} - ({@IntegrationEvent})", @event.EventId, @event.ApplicationName, @event);
+            _logger.LogDebug("Handling integration event from source: {IntegrationEventId} at {AppName} - ({@IntegrationEvent})", @event.EventId, @event.ApplicationName, @event);
 
             await _integrationEventService.PublishThroughEventBusAsync(@event);
         }

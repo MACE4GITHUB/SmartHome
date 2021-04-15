@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\SmartHome.Common\SmartHome.Common.csproj" />
     <ProjectReference Include="..\SmartHome.EventBus\SmartHome.EventBus.csproj" />
     <ProjectReference Include="..\SmartHome.MemoryEventBus\SmartHome.MemoryEventBus.csproj" />
   </ItemGroup>

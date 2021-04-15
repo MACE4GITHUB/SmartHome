@@ -114,6 +114,7 @@ namespace SmartHome.Data.Api
             LogInfo(logger, "endpoints");
 
             app.UseEventBus();
+            LogInfo(logger, "eventbus");
         }
 
         private static void LogInfo(ILogger logger, string message)
