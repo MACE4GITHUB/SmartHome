@@ -1,9 +1,9 @@
-﻿using SmartHome.Common.Models;
+﻿using Microsoft.Extensions.Logging;
+using SmartHome.Common.Models;
 using SmartHome.EventBus.Abstractions;
 using SmartHome.IntegrationBus.Content;
 using SmartHome.IntegrationBus.IntegrationEvents;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 
 namespace SmartHome.IntegrationBus
 {
@@ -13,8 +13,8 @@ namespace SmartHome.IntegrationBus
         private readonly INotice _notice;
         private readonly ILogger<DataSensorsHandlerWrapper> _logger;
 
-        public DataSensorsHandlerWrapper(IIntegrationEventHandler<DataSensorsAddedIntegrationEvent<DataSensorsAddedContent>> dataHandler, 
-            INotice notice, 
+        public DataSensorsHandlerWrapper(IIntegrationEventHandler<DataSensorsAddedIntegrationEvent<DataSensorsAddedContent>> dataHandler,
+            INotice notice,
             ILogger<DataSensorsHandlerWrapper> logger)
         {
             _dataHandler = dataHandler;
