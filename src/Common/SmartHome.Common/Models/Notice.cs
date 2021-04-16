@@ -7,8 +7,6 @@ namespace SmartHome.Common.Models
     public class Notice : INotice
     {
         private readonly SemaphoreSlim _semaphoreSlim = new(1, 1);
-        private int _usingResource = 0;
-
         private readonly NoticeTimeStamp _noticeTimeStamp;
 
         public Notice(Action<NoticeOptions> options)
@@ -42,47 +40,25 @@ namespace SmartHome.Common.Models
 
             await _semaphoreSlim.WaitAsync();
 
-            if (_noticeTimeStamp.IsWaiting)
+            try
+            {
+                if (_noticeTimeStamp.IsWaiting)
+                {
+                    _semaphoreSlim.Release();
+                    return;
+                }
+                await actionAsync();
+                _noticeTimeStamp.ShiftStartDateTime();
+            }
+            finally
             {
                 _semaphoreSlim.Release();
-                return;
             }
-
-            await actionAsync();
-            _noticeTimeStamp.ShiftStartDateTime();
-
-            _semaphoreSlim.Release();
         }
 
-        public void Notify(Action action)
-        {
-            if (action == null)
-            {
-                throw new ArgumentException("The action is not defined.");
-            }
-
-            if (_noticeTimeStamp.IsWaiting)
-            {
-                return;
-            }
-
-            if (Interlocked.Exchange(ref _usingResource, 1) == 1)
-            {
-                return;
-            }
-
-            if (_noticeTimeStamp.IsWaiting)
-            {
-                Interlocked.Exchange(ref _usingResource, 0);
-                return;
-            }
-
-            action();
-            _noticeTimeStamp.ShiftStartDateTime();
-
-            Interlocked.Exchange(ref _usingResource, 0);
-        }
-
+        /// <summary>
+        /// Determines notice options.
+        /// </summary>
         public sealed class NoticeOptions
         {
             public uint Frequency { get; set; }
