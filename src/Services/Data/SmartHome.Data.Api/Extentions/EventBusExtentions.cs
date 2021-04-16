@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SmartHome.Common.Models;
@@ -9,6 +8,7 @@ using SmartHome.IntegrationBus;
 using SmartHome.IntegrationBus.Content;
 using SmartHome.IntegrationBus.EventHandling;
 using SmartHome.IntegrationBus.IntegrationEvents;
+using System;
 
 namespace SmartHome.Data.Api.Extentions
 {
@@ -16,7 +16,7 @@ namespace SmartHome.Data.Api.Extentions
     {
         public static IServiceCollection AddEventBusHandlers(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddTransient<IIntegrationEventHandler<DataSensorsAddedIntegrationEvent<DataSensorsAddedContent>>, SourceDataSensorsAddedIntegrationEventHandler<DataSensorsAddedContent>>();
+            services.AddTransient<IIntegrationEventHandler<DataSensorsAddedIntegrationEvent<DataSensorsAddedContent>>, SimulationSourceDataSensorsAddedIntegrationEventHandler<DataSensorsAddedContent>>();
             services.AddSingleton<INotice, Notice>(sp => new Notice(op =>
             {
                 op.Frequency = 30;
