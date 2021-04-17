@@ -44,7 +44,6 @@ namespace SmartHome.Common.Models
             {
                 if (_noticeTimeStamp.IsWaiting)
                 {
-                    _semaphoreSlim.Release();
                     return;
                 }
                 await actionAsync();
