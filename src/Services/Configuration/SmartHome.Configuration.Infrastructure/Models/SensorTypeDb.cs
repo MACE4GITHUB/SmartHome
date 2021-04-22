@@ -1,21 +1,23 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
-namespace SmartHome.Configuration.Abstractions.Models
+namespace SmartHome.Configuration.Infrastructure.Models
 {
-    /// <summary>
-    /// Represents the sensor.
-    /// </summary>
-    public class Sensor
+    public class SensorTypeDb
     {
         /// <summary>
         /// Gets or sets a SensorTypeId.
         /// </summary>
-        public Guid SensorId { get; set; }
+        public string SensorTypeId { get; set; }
 
         /// <summary>
-        /// Gets or sets the sensor enable. 
+        /// The sensor type name.
         /// </summary>
-        public bool IsEnabled { get; set; }
+        public string TypeName { get; set; }
+
+        /// <summary>
+        /// The sensor description.
+        /// </summary>
+        public string TypeDescription { get; set; }
 
         /// <summary>
         /// Gets or sets the minimum value for a sensor.
@@ -38,8 +40,8 @@ namespace SmartHome.Configuration.Abstractions.Models
         public decimal MaxNormalValue { get; set; }
 
         /// <summary>
-        /// The sensor precision.
+        /// Navigation property.
         /// </summary>
-        public byte Precision { get; set; }
+        public ICollection<SensorDb> Sensors { get; set; }
     }
 }

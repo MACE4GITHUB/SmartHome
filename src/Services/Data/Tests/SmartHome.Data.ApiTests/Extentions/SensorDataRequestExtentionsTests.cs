@@ -17,7 +17,7 @@ namespace SmartHome.Data.Api.Extentions.Tests
         [Fact]
         public void IsNullOrEmptyIdEmptyTest()
         {
-            var sensorDataRequest = new SensorDataRequest { SensorTypeId = Guid.Empty };
+            var sensorDataRequest = new SensorDataRequest { SensorId = Guid.Empty };
             sensorDataRequest.IsNullOrEmpty().Should().BeTrue();
         }
     }

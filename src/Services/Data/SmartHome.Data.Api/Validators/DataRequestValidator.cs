@@ -68,7 +68,7 @@ namespace SmartHome.Data.Api.Validators
             }
 
             #region Check The Sensor Configuration
-            if (!_sensorConfiguration.TryGetSensorConfiguration(context.InstanceToValidate.SensorTypeId, out var sensor))
+            if (!_sensorConfiguration.TryGetSensorConfiguration(context.InstanceToValidate.SensorId, out var sensor))
             {
                 return Error("No one configuration found.", StructuredData, ref result, sensorDataRequest);
             }

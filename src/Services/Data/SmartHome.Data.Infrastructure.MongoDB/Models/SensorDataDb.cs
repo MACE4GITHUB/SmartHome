@@ -13,12 +13,12 @@ namespace SmartHome.Data.Infrastructure.MongoDB.Models
         /// Gets or sets an Id record.
         /// </summary>
         [BsonId]
-        public string Id => $"{Timestamp} {SensorTypeId}";
+        public string Id => $"{Timestamp} {SensorId}";
 
         /// <summary>
-        /// Gets or sets a SensorTypeId.
+        /// Gets or sets a SensorId.
         /// </summary>
-        public string SensorTypeId { get; set; }
+        public string SensorId { get; set; }
 
         /// <summary>
         /// Gets or sets a Timestamp.

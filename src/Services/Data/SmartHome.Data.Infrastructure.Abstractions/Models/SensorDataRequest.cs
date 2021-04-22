@@ -9,9 +9,9 @@ namespace SmartHome.Data.Infrastructure.Abstractions.Models
     public class SensorDataRequest
     {
         /// <summary>
-        /// Gets or sets a SensorTypeId.
+        /// Gets or sets a SensorId.
         /// </summary>
-        public Guid SensorTypeId { get; set; }
+        public Guid SensorId { get; set; }
 
         /// <summary>
         /// Gets or sets a Timestamp.

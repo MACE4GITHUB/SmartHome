@@ -14,6 +14,6 @@ namespace SmartHome.Data.Api.Extentions
         /// <param name="sensorDataRequest"></param>
         /// <returns></returns>
         public static bool IsNullOrEmpty(this SensorDataRequest sensorDataRequest) =>
-            sensorDataRequest == null || sensorDataRequest.SensorTypeId == Guid.Empty;
+            sensorDataRequest == null || sensorDataRequest.SensorId == Guid.Empty;
     }
 }

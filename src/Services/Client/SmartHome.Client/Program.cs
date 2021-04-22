@@ -14,7 +14,7 @@ namespace SmartHome.Client
 
         public static async Task Main()
         {
-            var sensorTypeId = new Guid("2223cc1a-0be0-4ea4-a7b1-e905d23e8e9c");
+            var sensorId = new Guid("2223cc1a-0be0-4ea4-a7b1-e905d23e8e9c");
             using var client = new HttpClient();
 
             async Task SendData(int value)
@@ -23,7 +23,7 @@ namespace SmartHome.Client
 
                 var data = new
                 {
-                    SensorTypeId = sensorTypeId,
+                    SensorId = sensorId,
                     Timestamp = DateTime.UtcNow,
                     Value = GetNextValue()
                 };

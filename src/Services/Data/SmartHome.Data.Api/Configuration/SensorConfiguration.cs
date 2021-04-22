@@ -12,14 +12,14 @@ namespace SmartHome.Data.Api.Configuration
         /// <summary>
         /// Gets fake configuration.
         /// </summary>
-        /// <param name="sensorTypeId"></param>
+        /// <param name="sensorId"></param>
         /// <param name="sensor"></param>
         /// <returns></returns>
-        public bool TryGetSensorConfiguration(Guid sensorTypeId, out Sensor sensor)
+        public bool TryGetSensorConfiguration(Guid sensorId, out Sensor sensor)
         {
             sensor = new Sensor()
             {
-                SensorTypeId = new Guid("2223cc1a-0be0-4ea4-a7b1-e905d23e8e9c"),
+                SensorId = new Guid("2223cc1a-0be0-4ea4-a7b1-e905d23e8e9c"),
                 IsEnabled = true,
                 MinValue = -10,
                 MinNormalValue = -10,
@@ -28,7 +28,7 @@ namespace SmartHome.Data.Api.Configuration
                 Precision = 0
             };
 
-            return sensorTypeId == sensor.SensorTypeId;
+            return sensorId == sensor.SensorId;
         }
     }
 }

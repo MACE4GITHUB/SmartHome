@@ -12,9 +12,9 @@ namespace SmartHome.Configuration.Abstractions
         /// <summary>
         /// Gets true when a sensor configuration exists otherwise false.
         /// </summary>
-        /// <param name="sensorTypeId"></param>
+        /// <param name="sensorId"></param>
         /// <param name="sensor"></param>
         /// <returns></returns>
-        bool TryGetSensorConfiguration(Guid sensorTypeId, out Sensor sensor);
+        bool TryGetSensorConfiguration(Guid sensorId, out Sensor sensor);
     }
 }

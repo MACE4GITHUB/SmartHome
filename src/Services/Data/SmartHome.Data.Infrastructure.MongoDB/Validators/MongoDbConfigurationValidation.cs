@@ -9,12 +9,12 @@ namespace SmartHome.Data.Infrastructure.MongoDB.Validators
     {
         public ValidateOptionsResult Validate(string name, MongoDbConfiguration options)
         {
-            if (options.ConnectionString.IsNullOrEmptyOrWhiteSpace())
+            if (options.ConnectionString.IsNullOrWhiteSpace())
             {
                 return ValidateOptionsResult.Fail("The ConnectionString must be defined.");
             }
 
-            if (options.Database.IsNullOrEmptyOrWhiteSpace())
+            if (options.Database.IsNullOrWhiteSpace())
             {
                 return ValidateOptionsResult.Fail("The Database must be defined.");
             }

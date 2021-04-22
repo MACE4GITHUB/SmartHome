@@ -8,7 +8,7 @@ namespace SmartHome.Data.Infrastructure.MongoDB.Extentions
         public static SensorDataDb ToSensorDataDb(this SensorDataRequest sensorDataRequest) =>
             new()
             {
-                SensorTypeId = sensorDataRequest.SensorTypeId.ToString(),
+                SensorId = sensorDataRequest.SensorId.ToString(),
                 Timestamp = sensorDataRequest.Timestamp,
                 Value = sensorDataRequest.Value,
                 NormalValue = sensorDataRequest.NormalValue
