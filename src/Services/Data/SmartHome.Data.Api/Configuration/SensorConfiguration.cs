@@ -1,6 +1,8 @@
 ﻿using SmartHome.Configuration.Abstractions;
 using SmartHome.Configuration.Abstractions.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SmartHome.Data.Api.Configuration
 {
@@ -9,6 +11,14 @@ namespace SmartHome.Data.Api.Configuration
     /// </summary>
     public class SensorConfiguration : ISensorConfiguration
     {
+        private readonly IConfigurationService _configurationService;
+        private Dictionary<Guid, Sensor> _sensors;
+
+        public SensorConfiguration(IConfigurationService configurationService)
+        {
+            _configurationService = configurationService;
+        }
+
         /// <summary>
         /// Gets fake configuration.
         /// </summary>
@@ -17,18 +27,24 @@ namespace SmartHome.Data.Api.Configuration
         /// <returns></returns>
         public bool TryGetSensorConfiguration(Guid sensorId, out Sensor sensor)
         {
-            sensor = new Sensor()
+            if (_sensors == null)
             {
-                SensorId = new Guid("2223cc1a-0be0-4ea4-a7b1-e905d23e8e9c"),
-                IsEnabled = true,
-                MinValue = -10,
-                MinNormalValue = -10,
-                MaxValue = 100,
-                MaxNormalValue = 100,
-                Precision = 0
-            };
+                var sensors = _configurationService.GetAllSensorConfigurations().GetAwaiter().GetResult().ToList();
 
-            return sensorId == sensor.SensorId;
+                if (!sensors.Any())
+                {
+                    sensor = new Sensor();
+                    return false;
+                }
+
+                _sensors = new Dictionary<Guid, Sensor>();
+                foreach (var s in sensors)
+                {
+                    _sensors.Add(s.SensorId, s);
+                }
+            }
+
+            return _sensors.TryGetValue(sensorId, out sensor);
         }
     }
 }

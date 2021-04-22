@@ -50,6 +50,7 @@ namespace SmartHome.Data.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<ISensorConfiguration, SensorConfiguration>();
+            services.AddSingleton<IConfigurationService, ConfigurationService>();
 
             services.AddControllers()
                 .AddSmartHomeDataValidation();
