@@ -27,7 +27,7 @@ namespace SmartHome.CommonTests.Extentions.Tests
         [InlineData("    ", true)]
         public void IsNullOrEmptyOrWhiteSpaceTest(string value, bool expectedResult)
         {
-            value.IsNullOrEmptyOrWhiteSpace().Should().Be(expectedResult);
+            value.IsNullOrWhiteSpace().Should().Be(expectedResult);
         }
     }
 }

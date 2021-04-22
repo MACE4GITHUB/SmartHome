@@ -18,7 +18,7 @@
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static bool IsNullOrEmptyOrWhiteSpace(this string value) =>
+        public static bool IsNullOrWhiteSpace(this string value) =>
             string.IsNullOrWhiteSpace(value);
     }
 }
