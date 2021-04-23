@@ -29,7 +29,7 @@ namespace SmartHome.Data.Api.Configuration
         {
             if (_sensors == null)
             {
-                var sensors = _configurationService.GetAllSensorConfigurations().GetAwaiter().GetResult().ToList();
+                var sensors = _configurationService.GetAllSensorConfigurationsAsync().GetAwaiter().GetResult().ToList();
 
                 if (!sensors.Any())
                 {

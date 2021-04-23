@@ -14,6 +14,6 @@ namespace SmartHome.Configuration.Abstractions
         /// Gets all sensor configurations.
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<Sensor>> GetAllSensorConfigurations();
+        Task<IEnumerable<Sensor>> GetAllSensorConfigurationsAsync();
     }
 }

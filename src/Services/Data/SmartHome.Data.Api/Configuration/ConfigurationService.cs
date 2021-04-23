@@ -10,7 +10,7 @@ namespace SmartHome.Data.Api.Configuration
 {
     public class ConfigurationService : IConfigurationService
     {
-        public async Task<IEnumerable<Sensor>> GetAllSensorConfigurations()
+        public async Task<IEnumerable<Sensor>> GetAllSensorConfigurationsAsync()
         {
             // A very simple code
 
