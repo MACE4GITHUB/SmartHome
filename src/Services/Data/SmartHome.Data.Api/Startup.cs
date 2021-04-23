@@ -1,3 +1,4 @@
+using System.Net.Http;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -49,8 +50,9 @@ namespace SmartHome.Data.Api
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<ISensorConfiguration, SensorConfiguration>();
+            services.AddSingleton<ISensorConfiguration, OneByOneSensorConfiguration>();
             services.AddSingleton<IConfigurationService, ConfigurationService>();
+            services.AddSingleton<HttpClient>();
 
             services.AddControllers()
                 .AddSmartHomeDataValidation();

@@ -27,15 +27,36 @@ namespace SmartHome.Configuration.Infrastructure.Repositories
         /// <returns></returns>
         public async Task<IEnumerable<SensorDb>> ReadAllAsync(ExpressionConditions<SensorDb, Enum> condition)
         {
-            return await _context.Sensors
-                .Include(_ => _.SensorType)
-                .OrderBy(condition[ConditionsOption.OrderBy])
+            IQueryable<SensorDb> query = _context.Sensors.Include(_ => _.SensorType);
+            AddWhereIfExists(ref query, condition);
+            AddOrderByIfExists(ref query, condition);
+            return await query
                 .ToListAsync().ConfigureAwait(false);
         }
 
+        /// <summary>
+        /// Represents Conditions Option.
+        /// </summary>
         public enum ConditionsOption
         {
-            OrderBy
+            OrderBy,
+            Where
+        }
+
+        private void AddWhereIfExists(ref IQueryable<SensorDb> query, ExpressionConditions<SensorDb, Enum> condition)
+        {
+            if (condition.KeyExists(ConditionsOption.Where))
+            {
+                query = query.Where(condition.GetBool(ConditionsOption.Where));
+            }
+        }
+
+        private void AddOrderByIfExists(ref IQueryable<SensorDb> query, ExpressionConditions<SensorDb, Enum> condition)
+        {
+            if (condition.KeyExists(ConditionsOption.Where))
+            {
+                query = query.OrderBy(condition[ConditionsOption.OrderBy]);
+            }
         }
     }
 }

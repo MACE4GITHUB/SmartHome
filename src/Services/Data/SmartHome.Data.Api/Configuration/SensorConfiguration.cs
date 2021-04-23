@@ -20,7 +20,7 @@ namespace SmartHome.Data.Api.Configuration
         }
 
         /// <summary>
-        /// Gets fake configuration.
+        /// Gets configuration.
         /// </summary>
         /// <param name="sensorId"></param>
         /// <param name="sensor"></param>

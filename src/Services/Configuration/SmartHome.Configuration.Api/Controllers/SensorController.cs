@@ -41,7 +41,7 @@ namespace SmartHome.Configuration.Api.Controllers
 
         [HttpGet]
         [Route("getAll")]
-        [ProducesResponseType(typeof(Sensor), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<Sensor>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(string), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
@@ -58,6 +58,30 @@ namespace SmartHome.Configuration.Api.Controllers
             }
 
             var sensor = _mapper.Map<List<Sensor>>(result);
+
+            return Ok(sensor);
+        }
+
+        [HttpGet]
+        [Route("get")]
+        [ProducesResponseType(typeof(Sensor), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status405MethodNotAllowed)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetSensorConfigurationById(Guid id)
+        {
+            var sid = id.ToString();
+            var ex = new ExpressionConditions<SensorDb, Enum> { [Where] = _ => _.SensorId == sid, [OrderBy] = _ => _.SensorId };
+            var result = (await _repository.ReadAllAsync(ex)).ToList();
+
+            if (!result.Any())
+            {
+                return NotFound("Any configuration is not found.");
+            }
+
+            var sensor = _mapper.Map<Sensor>(result.First());
 
             return Ok(sensor);
         }

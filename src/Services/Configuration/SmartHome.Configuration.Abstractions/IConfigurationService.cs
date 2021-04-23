@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SmartHome.Configuration.Abstractions
@@ -15,5 +16,11 @@ namespace SmartHome.Configuration.Abstractions
         /// </summary>
         /// <returns></returns>
         Task<IEnumerable<Sensor>> GetAllSensorConfigurationsAsync();
+
+        /// <summary>
+        /// Gets a sensor configuration by async.
+        /// </summary>
+        /// <returns></returns>
+        Task<Sensor> GetSensorConfigurationsByIdAsync(Guid id);
     }
 }

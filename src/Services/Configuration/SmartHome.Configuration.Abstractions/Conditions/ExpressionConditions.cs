@@ -35,5 +35,16 @@ namespace SmartHome.Configuration.Abstractions.Conditions
             }
             set => _expressions[index] = value;
         }
+
+        public Expression<Func<TModel, bool>> GetBool(TKey index)
+        {
+            Expression convertedExpressionBody = Expression.Convert(this[index].Body, typeof(bool));
+            return Expression.Lambda<Func<TModel, bool>>(
+                convertedExpressionBody, this[index].Parameters
+            );
+        }
+
+        public bool KeyExists(TKey index) => 
+            _expressions.ContainsKey(index);
     }
 }
