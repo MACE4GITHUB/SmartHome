@@ -1,4 +1,3 @@
-using System.Net.Http;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -7,9 +6,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SmartHome.Common.Extentions;
 using SmartHome.Configuration.Abstractions;
 using SmartHome.Data.Api.Configuration;
 using SmartHome.Data.Infrastructure.MongoDB.Extentions;
+using System.Net.Http;
 
 namespace SmartHome.Data.Api
 {
@@ -50,9 +51,11 @@ namespace SmartHome.Data.Api
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<ISensorConfiguration, OneByOneSensorConfiguration>();
-            services.AddSingleton<IConfigurationService, ConfigurationService>();
             services.AddSingleton<HttpClient>();
+            services.AddSingleton<ISensorConfiguration, OneByOneSensorConfiguration>();
+            services
+                .AddDecorator<IConfigurationService, ConfigurationCacheService>
+                    (x => x.AddSingleton<IConfigurationService, ConfigurationService>());
 
             services.AddControllers()
                 .AddSmartHomeDataValidation();
