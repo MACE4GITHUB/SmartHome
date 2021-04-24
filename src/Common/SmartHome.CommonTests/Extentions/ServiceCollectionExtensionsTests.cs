@@ -11,8 +11,64 @@ namespace SmartHome.Common.Extentions.Tests
         [Fact]
         public void AddDecoratorTest()
         {
-
             var provider = ConfigureProvider(s =>
+            {
+                s.AddTransient<IService, SomeRandomService>();
+                s.AddDecorator<IDecoratedService, Decorator>(c =>
+                {
+                    c.AddSingleton<IDecoratedService, Decorated>();
+                });
+            });
+
+            var count = provider.GetServices<IDecoratedService>().ToList().Count;
+            count.Should().Be(1);
+
+            var instance = provider.GetRequiredService<IDecoratedService>();
+
+            var decorator = Assert.IsType<Decorator>(instance);
+
+            Assert.IsType<Decorated>(decorator.Inner);
+        }
+
+        [Fact]
+        public void AddDecoratorExceptionStackOverflowSomeTest()
+        {
+
+            Action action = () => ConfigureProvider(s =>
+            {
+                s.AddTransient<IService, SomeRandomService>();
+                s.AddDecorator<IDecoratedService, Decorator>(c =>
+                {
+                    c.AddSingleton<IDecoratedService, Decorated>();
+                    c.AddSingleton<IDecoratedService, Decorator>();
+                });
+            });
+
+            action.Should().Throw<InvalidOperationException>().WithMessage("IDecoratedService has detected a stack overflow with some Decorator.");
+        }
+
+        [Fact]
+        public void AddDecoratorExceptionStackOverflowOtherTest()
+        {
+
+            Action action = () => ConfigureProvider(s =>
+            {
+                s.AddTransient<IService, SomeRandomService>();
+                s.AddDecorator<IDecoratedService, Decorator>(c =>
+                {
+                    c.AddSingleton<IDecoratedService, Decorated>();
+                    c.AddSingleton<IDecoratedService, OtherDecorated>();
+                });
+            });
+
+            action.Should().Throw<InvalidOperationException>().WithMessage("IDecoratedService has detected a stack overflow with other Decorator (OtherDecorated).");
+        }
+
+        [Fact]
+        public void AddDecoratorExceptionDuplicateTest()
+        {
+
+            Action action = () => ConfigureProvider(s =>
             {
                 s.AddTransient<IService, SomeRandomService>();
                 s.AddDecorator<IDecoratedService, Decorator>(c =>
@@ -25,22 +81,27 @@ namespace SmartHome.Common.Extentions.Tests
                 });
             });
 
-            var count = provider.GetServices<IDecoratedService>().ToList().Count;
-            count.Should().Be(2);
-
-            var instance = provider.GetRequiredService<IDecoratedService>();
-
-            var decorator = Assert.IsType<Decorator>(instance);
-
-            Assert.IsType<Decorated>(decorator.Inner);
+            action.Should().Throw<InvalidOperationException>().WithMessage("IDecoratedService has detected a duplicate Decorator.");
         }
 
         [Fact]
-        public void TryAddDecoratorSomeTest()
+        public void AddDecoratorExceptionConfiguredTest()
+        {
+            Action action = () => ConfigureProvider(s =>
+            {
+                s.AddTransient<IService, SomeRandomService>();
+                s.AddDecorator<IDecoratedService, Decorator>(c => { });
+            });
+
+            action.Should().Throw<InvalidOperationException>().WithMessage("IDecoratedService is not configured.");
+        }
+
+        [Fact]
+        public void AddDecoratorSomeTest()
         {
             var provider = ConfigureProvider(s =>
             {
-                s.TryAddDecorator<IDecoratedService, Decorator>(sc1 =>
+                s.AddDecorator<IDecoratedService, Decorator>(sc1 =>
                 {
                     sc1.AddTransient<IService, SomeRandomService>();
                     sc1.AddDecorator<IDecoratedService, OtherDecorated>(
@@ -57,34 +118,9 @@ namespace SmartHome.Common.Extentions.Tests
             var instance = provider.GetRequiredService<IDecoratedService>();
 
             var decorator = Assert.IsType<Decorator>(instance);
+            var otherDecorated = Assert.IsType<OtherDecorated>(decorator.Inner);
 
-            Assert.IsType<OtherDecorated>(decorator.Inner);
-        }
-
-        [Fact]
-        public void TryAddDecoratorTest()
-        {
-
-            var provider = ConfigureProvider(s =>
-            {
-                s.AddDecorator<IDecoratedService, Decorator>(c =>
-                {
-                    c.AddSingleton<IDecoratedService, Decorated>();
-                });
-                s.TryAddDecorator<IDecoratedService, Decorator>(c =>
-                {
-                    c.AddSingleton<IDecoratedService, Decorated>();
-                });
-            });
-
-            var count = provider.GetServices<IDecoratedService>().ToList().Count;
-            count.Should().Be(1);
-
-            var instance = provider.GetRequiredService<IDecoratedService>();
-
-            var decorator = Assert.IsType<Decorator>(instance);
-
-            Assert.IsType<Decorated>(decorator.Inner);
+            Assert.IsType<Decorated>(otherDecorated.Inner);
         }
 
         private static ServiceProvider ConfigureProvider(Action<IServiceCollection> configure)
@@ -125,8 +161,14 @@ namespace SmartHome.Common.Extentions.Tests
 
         public class OtherDecorated : IDecoratedService
         {
+            private readonly IService _injectedService;
+
+            public IDecoratedService Inner { get; }
+
             public OtherDecorated(IDecoratedService inner = null, IService injectedService = null)
             {
+                Inner = inner;
+                _injectedService = injectedService;
             }
         }
 
