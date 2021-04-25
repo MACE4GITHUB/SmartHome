@@ -26,7 +26,7 @@ namespace SmartHome.Data.Api.Configuration
 
         public async Task<Sensor> GetSensorConfigurationsByIdAsync(Guid id)
         {
-            await Task.Yield();
+
 
             if (_sensors.TryGetValue(id, out var sensor1))
             {
@@ -34,14 +34,19 @@ namespace SmartHome.Data.Api.Configuration
             }
 
             await _semaphoreSlim.WaitAsync();
-
-            if (_sensors.TryGetValue(id, out var sensor2))
+            try
             {
+             if (_sensors.TryGetValue(id, out var sensor2))
+             {
                 return sensor2;
-            }
+             }
 
-            var sensorValue = await SensorConfigurationsByIdAsync(id);
-            _semaphoreSlim.Release();
+             var sensorValue = await SensorConfigurationsByIdAsync(id);
+            }
+            finally
+            {
+             _semaphoreSlim.Release();
+            }
 
             return sensorValue;
         }
