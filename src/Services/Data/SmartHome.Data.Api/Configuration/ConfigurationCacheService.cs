@@ -46,9 +46,10 @@ namespace SmartHome.Data.Api.Configuration
             finally
             {
              _semaphoreSlim.Release();
+             return sensorValue;
             }
 
-            return sensorValue;
+            
         }
 
         private async Task<Sensor> SensorConfigurationsByIdAsync(Guid id)
